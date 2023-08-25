@@ -1,14 +1,14 @@
 {
   "manifest_version": 3,
-  "name": "Browser Extension Template",
+  "name": "Video Speed 1.75",
   "version": "0.0.1",
-  "description": "This is a starter template for a Chrome browesr extension.",
+  "description": "This Chrome browser extension automatically sets the speed of any video to 1.75.",
    "permissions": ["scripting"],
   "icons": {
-    "16": "images/hide-emoji-16.png",
-    "32": "images/hide-emoji-32.png",
-    "48": "images/hide-emoji-48.png",
-    "128": "images/hide-emoji-128.png"
+    "16": "images/fastforward-emoji-16.png",
+    "32": "images/fastforward-emoji-32.png",
+    "48": "images/fastforward-emoji-48.png",
+    "128": "images/fastforward-emoji-128.png"
 },
 "background": {
     "service_worker": "scripts/background.js"
