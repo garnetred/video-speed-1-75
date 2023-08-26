@@ -3,7 +3,7 @@
   "name": "Video Speed 1.75",
   "version": "0.0.1",
   "description": "This Chrome browser extension automatically sets the speed of any video to 1.75.",
-   "permissions": ["scripting"],
+   "permissions": ["scripting", "tabs"],
   "icons": {
     "16": "images/fastforward-emoji-16.png",
     "32": "images/fastforward-emoji-32.png",
@@ -26,7 +26,8 @@
         "matches": [
         "https://*/*", "http://*/*"
       ],
-      "css": ["css/global.css"]
+      "css": ["css/global.css"],
+      "js": ["scripts/content.js"]
     }
 ],
   "host_permissions": [
