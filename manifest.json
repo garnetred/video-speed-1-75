@@ -17,20 +17,20 @@
   {
     "resources": ["css/*.css"],
     "extension_ids": [
-      ""
+"bnchhfelhdhimijlegniojhdigbphnfc"
     ]
     }
   ],
 "content_scripts": [
     {
         "matches": [
-        "*://www.someurl.com/*"
+        "https://*/*", "http://*/*"
       ],
       "css": ["css/global.css"]
     }
 ],
   "host_permissions": [
-    "*://www.someurl.com/*"
+    "https://*/*", "http://*/*"
   ],
   "action": {
       "default_popup": "popup.html"
