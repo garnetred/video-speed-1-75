@@ -1,33 +1,38 @@
 const observer = new MutationObserver((mutations) => {
   //
   console.log(mutations);
+
+  mutations.forEach((video) => {
+    video.playbackRate = 1.75;
+  });
 });
 
-const video = document.querySelector("video");
-console.log(video);
+const videos = document.querySelectorAll("video");
 
 chrome.runtime.onMessage.addListener((obj, sender, response) => {
-  const { pageLoaded, error } = obj;
-  if (response && pageLoaded) {
+  const { pageLoaded, error, site } = obj;
+  if (response && pageLoaded && !site) {
     console.log("response received and page loaded");
-    observer.observe(video, { attributes: true });
-    // setTimeout(() => {
-    //   console.log("video after console log", video);
-    //   if (video.getAttribute("preload")) {
-    //     console.log(
-    //       video.playbackRate,
-    //       "playback rate after grabbing preload attribute",
-    //     );
-    //     video.playbackRate = 1.75;
-    //     return;
-    //   }
-    //   video.playbackRate = 1.75;
-    // }, 10000);
+    videos.forEach((video) => {
+      console.log("video", video);
+      observer.observe(video, { attributes: true });
 
-    video.addEventListener("canplay", (event) => {
       video.playbackRate = 1.75;
-      console.log(video.playbackRate);
+
+      video.addEventListener("paused", (event) => {
+        // video.playbackRate = 1.75;
+        console.log(video.playbackRate, "paused");
+      });
     });
+  } else if (response && pageLoaded && site === "teachable.com") {
+    // window.addEventListener("load", () => {
+    console.log("document loaded");
+    const vjsvideo = document.querySelector("#vjs_video_3_html5_api");
+    console.log(vjsvideo);
+    observer.observe(vjsvideo, { attributes: true, childList: true });
+
+    vjsvideo.playbackRate = 1.75;
+    // });
   } else {
     console.error(error);
   }
